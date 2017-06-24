@@ -1,11 +1,22 @@
 language: java
 dist: trusty
 jdk: oraclejdk8
+
 notifications:
   slack:
     secure: Yk5uHwIdTbaV+H0BchEsyZ6+TYHwD2aOCe1M5qU1kBjJI4pyR4huh3bMxIXyTVDSHdYcZ+Vk0P3KHUO0qQSnelifZGzGFIUp98Qh6ujl0AoqjzeLjK3hIiOgYxkT/R6zEVFR7Bn2xFmU3xYBPGtxn2OX7zq7B5FLVjXCpJaFLwPUepr9Ykn03UNfPwVm9oq9UEI8sDvEg7cjqPGbAERejm3lu0qk8AvPZ/Ajiw0lAiMYfy9sWm2PI9TIb0apQGzyJLFPZbPNfG1agOmHAYTJnDvi2KrFfZEweFrtXzmzSRxGwUGOF8QlTTTCTR2jXRKnuiJW0FsuT5rKnGrliR/56cufALuBouKPfSg6UNXxyi+Xy/qyF7nl14Z+PinUo+GXZp08ws6rWW4H5TEf2rWUelv3aUMQ3e9nRWNL3rhSMadFsuNerxLfQ3t8QV4JBcOxMStu7NgT6mHTjaNHAUS78UBq9StC9UAjxHRHAIvFSTATjDG1v47PaTnEnLBB4vhtsXPwDNHL8RqPII9Ldt07Fpw3ccj3we/JlzQ4H4z9+YN/oIQTTZweS7Z6kMrsq/gJFKBSimFIpR/9gMplMrBIYcBK4iqisNNYenBQNCpDrKEJgVy2XDSijaXFu4VtJHfjadgia+uZVHX5I7iHeZW16367cb82xPyu6csSCh64oe0=
+
+addons:
+  sonarcloud:
+    organization: "dsaouda-github"
+    token:
+      secure: B7Me80pg+7oGCUkqUxNgNHu/UEjdW9rjjAuMGpXqoKZe2NOhCXpAA8YHsK74Jp75HHSxeOHvi1cU4bUSofp6L+4rh+KgzPfo842gIV2XmgmxX9iFdKifHiP9PRrow0NvDX9/NZsRNUvP/fi9CvAiEtbDu2K76ArzG3PAIkJk+gXFUOc7iJbnQAKc58bMz+VdC9OVaVA0+bh031dgNY1GNJfBEKMpxPdw2OK/2Pbh5gyb8LVQJ0xeL+T/hqcxZk8y9egIxe2E7pVvWeynix+iiSV6Pf4ugsUJ4V9DpeijACuR3QpFDVMpkDXXnjmXc8v2HJ6IGIM7jDloztJI7IQBe1Bd6cIYG4Q9bHRpbVFEFnLhesGeyEUpSFbYWPbT9It9TlImu/wKq4mJTfUR9LA53Dfs5K/VQntVlj4M6ht2pvtJb6QrvBTZWGBq92MnGjv3Iv0XuNUGNzLoWAeKtfwoy8L6weBEmg+SlPIOmqe4w+MmEMW82T9oH94oDvX+CHpdDu4qw0zqH1O6T+mEtlnzE3cKioKLy1laWSoEVx5yua2hMSOEJ8CLzWy/WJh6d2oC+sIPvpG71sxMm/VFA/Fz3NsZq7ddsOPi+6ISsflumqahhxG2QHXdVPaQvEM7WXNLHQmnNcw7C2TInISV3OS0HgtiQ0F9/fehlahR04Ija7A=
+
 cache:
   directories:
   - .autoconf
   - $HOME/.m2
-script: mvn clean install
+
+script: 
+  - mvn clean install
+  - sonar-scanner

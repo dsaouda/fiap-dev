@@ -10,7 +10,7 @@ public class SomaTest {
 	public void somaDeveSer10Test() {
 		
 		int resultado = 10;
-		int soma = 5+6;
+		int soma = 5+5;
 		assertEquals("5 + 5 = 10", resultado, soma);
 	}
 	
