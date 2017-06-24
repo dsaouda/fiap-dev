@@ -9,9 +9,10 @@ public class SomaTest {
 	@Test
 	public void somaDeveSer10Test() {
 		
-		int resultado = 10;
-		int soma = 5+5;
-		assertEquals("5 + 5 = 10", resultado, soma);
+		float resultado = 10.0f;
+		Soma soma2 = new Soma(5, 5);
+		
+		assertEquals("5 + 5 = 10", resultado, soma2.getResultado(), 0.0f);
 	}
 	
 }
