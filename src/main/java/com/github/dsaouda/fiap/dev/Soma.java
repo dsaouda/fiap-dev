@@ -2,23 +2,23 @@ package com.github.dsaouda.fiap.dev;
 
 public class Soma {
 	
-	private float val1;
-	private float val2;
+	private int val1;
+	private int val2;
 
-	public Soma(float val1, float val2) {
+	public Soma(int val1, int val2) {
 		this.val1 = val1;
 		this.val2 = val2;
 	}
 	
-	public float getResultado() {
+	public int getResultado() {
 		return val1 + val2;
 	}
 	
-	public float getVal1() {
+	public int getVal1() {
 		return val1;
 	}
 	
-	public float getVal2() {
+	public int getVal2() {
 		return val2;
 	}
 }

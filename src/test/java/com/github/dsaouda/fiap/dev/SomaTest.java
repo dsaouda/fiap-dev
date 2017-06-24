@@ -9,11 +9,13 @@ public class SomaTest {
 	@Test
 	public void somaDeveSer10Test() {
 		
-		float resultado = 10.0f;
+		int resultado = 10;
 		Soma soma = new Soma(5, 5);
 		
-		assertTrue(soma.getClass() == Soma.class);
-		assertEquals("5 + 5 = 10", resultado, soma.getResultado(), 0.0f);
+		assertTrue(soma instanceof Soma);
+		assertEquals(5, soma.getVal1());
+		assertEquals(5, soma.getVal2());
+		assertEquals(resultado, new Soma(5,5).getResultado());
 	}
 	
 }
