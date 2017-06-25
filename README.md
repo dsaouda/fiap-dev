@@ -14,3 +14,4 @@ Analisar
  http://try.drone.io/
  https://codeship.com
  docs.codecov.io
+ codacy.com
