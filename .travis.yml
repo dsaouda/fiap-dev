@@ -34,6 +34,7 @@ deploy:
   keyfile: client-secret.json
   project: "fiap-java-devops"
   skip_cleanup: true
+  verbosity: debug
   default: true
   on:
     all_branches: true
