@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/hello")
 public class HelloController {
 
+	@GetMapping("/version")
+	public ResponseEntity<String> versao() {
+		return new ResponseEntity<>("v1", HttpStatus.OK);
+	}
 	
 	@GetMapping
 	public ResponseEntity<String> index() {

@@ -21,13 +21,22 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
+    - "$HOME/google-cloud-sdk/"
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv -in client-secret.json.enc -out client-secret.json -d
+  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
+    curl https://sdk.cloud.google.com | bash;
+  fi
+  - gcloud auth activate-service-account --key-file client-secret.json
+
+install:
+- gcloud config set project fiap-java-devops 
+- mvn appengine:deploy
 
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 
-
-before_install:
-  - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv -in client-secret.json.enc -out client-secret.json -d
 
 #deploy:
 #  provider: gae
