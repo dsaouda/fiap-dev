@@ -33,5 +33,9 @@ deploy:
   provider: gae
   keyfile: client-secret.json
   project: "fiap-java-devops"
+  skip_cleanup: true
+  default: true
+  on:
+    all_branches: true
 
 on_start: always
