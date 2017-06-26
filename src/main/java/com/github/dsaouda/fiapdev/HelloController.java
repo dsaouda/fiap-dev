@@ -14,7 +14,7 @@ public class HelloController {
 
 	@GetMapping("/version")
 	public ResponseEntity<String> versao() {
-		return new ResponseEntity<>("v1", HttpStatus.OK);
+		return new ResponseEntity<>("v2 atualizou???", HttpStatus.OK);
 	}
 	
 	@GetMapping
