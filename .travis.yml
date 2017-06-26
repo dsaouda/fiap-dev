@@ -1,7 +1,6 @@
 language: java
 jdk: oraclejdk8
 sudo: false
-install: true
 
 branches:
   only:
@@ -47,5 +46,3 @@ script:
 #  default: true
 #  on:
 #    all_branches: true
-
-on_start: always
