@@ -22,9 +22,15 @@ cache:
     - '$HOME/.sonar/cache'
     - "$HOME/google-cloud-sdk/"
 
+env:
+  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
   - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv -in client-secret.json.enc -out client-secret.json -d
-  - curl https://sdk.cloud.google.com | bash;
+  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
+        curl https://sdk.cloud.google.com | bash;
+    fi
   - gcloud auth activate-service-account --key-file client-secret.json
 
 install:
