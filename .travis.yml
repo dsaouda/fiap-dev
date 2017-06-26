@@ -20,24 +20,26 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
-    - "$HOME/google-cloud-sdk/"
-
-env:
-  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
-  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - "$HOME/.config"
 
 before_install:
+  - echo "before_install"
   - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv -in client-secret.json.enc -out client-secret.json -d
-  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
-        curl https://sdk.cloud.google.com | bash;
-    fi
+  - export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+  - echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+  - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  - apt-get update && apt-get install google-cloud-sdk
+  - which gcloud
+  - whereis gcloud
   - gcloud auth activate-service-account --key-file client-secret.json
 
 install:
+  - echo "install"
   - gcloud config set project fiap-java-devops 
   - mvn appengine:deploy
 
 script:
+  - echo "script"
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 
 
