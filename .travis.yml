@@ -33,12 +33,13 @@ cache:
 #  - whereis gcloud
 #  - gcloud auth activate-service-account --key-file client-secret.json
 
-install:
-  - echo "script"
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+#install:
+#  - echo "script"
+  
 
-#script:
-#  - echo "install"
+script:
+  - echo "install"
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 #  - gcloud config set project fiap-java-devops 
 #  - mvn appengine:deploy
 
