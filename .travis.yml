@@ -36,12 +36,11 @@ before_install:
 #  - gcloud auth activate-service-account --key-file client-secret.json
 
 install:
-  - echo "script"
-  - sudo ./mvnw install
+  - echo "script"  
 
 script:
   - echo "install"
-  - sudo ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 #  - gcloud config set project fiap-java-devops 
 #  - mvn appengine:deploy
 
