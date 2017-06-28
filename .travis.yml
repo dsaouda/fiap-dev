@@ -42,7 +42,7 @@ script:
   - echo "install"
   - sudo mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
   - sudo gcloud config set project fiap-java-devops 
-  - sudo mvn appengine:deploy
+  - sudo mvn appengine:deploy -X
 
 #deploy:
 #  provider: gae
