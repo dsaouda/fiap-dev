@@ -35,9 +35,9 @@ public class UploadController {
 			image.setName(blob.getName());			
 			imageDao.put(image);
 			
-			return new ResponseEntity<String>(blob.getName(), HttpStatus.CREATED);
+			return new ResponseEntity<>(blob.getName(), HttpStatus.CREATED);
 		} catch (IOException e) {
-			return new ResponseEntity<String>("solicitação não foi bem sucedida. Envie um arquivo válido.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("solicitação não foi bem sucedida. Envie um arquivo válido.", HttpStatus.BAD_REQUEST);
 		}		
 	}	
 }

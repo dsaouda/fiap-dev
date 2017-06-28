@@ -34,26 +34,26 @@ public class VisionController {
 	private ImageDao imageDao;
 
 	@PostMapping(path="/label", produces={MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<?> detectLabel(@RequestBody Map<String, String> req) throws IOException {
+	public ResponseEntity<Object> detectLabel(@RequestBody Map<String, String> req) throws IOException {
 		return detect(req, "LABEL");
 	}
 
 	@PostMapping(path="/face", produces={MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<?> detectFace(@RequestBody Map<String, String> req) throws IOException {
+	public ResponseEntity<Object> detectFace(@RequestBody Map<String, String> req) throws IOException {
 		return detect(req, "FACE");
 	}
 
 	@PostMapping(path="/text", produces={MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<?> detectText(@RequestBody Map<String, String> req) throws IOException {
+	public ResponseEntity<Object> detectText(@RequestBody Map<String, String> req) throws IOException {
 		return detect(req, "TEXT");
 	}
 
 	@PostMapping(path="/crop-hint", produces={MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<?> detectCropHint(@RequestBody Map<String, String> req) throws IOException {
+	public ResponseEntity<Object> detectCropHint(@RequestBody Map<String, String> req) throws IOException {
 		return detect(req, "CROP");
 	}
 
-	private ResponseEntity<?> detect(Map<String, String> req, String type) throws IOException {
+	private ResponseEntity<Object> detect(Map<String, String> req, String type) throws IOException {
 		String fileId = req.get("fileId");
 		Blob blob = storage.getBlobByFile(fileId);
 
@@ -82,7 +82,7 @@ public class VisionController {
 				objJson = entity.getString(keyName);						
 				
 				if (objJson.trim().isEmpty()) {
-					System.out.println(keyName + " gerando na api vision");
+					logUsoVision(keyName);
 					objJson = new Gson().toJson(vision.detectLabel(blob));
 				}
 				
@@ -94,7 +94,7 @@ public class VisionController {
 				objJson = entity.getString(keyName);
 				
 				if (objJson.trim().isEmpty()) {
-					System.out.println(keyName + " gerando na api vision");
+					logUsoVision(keyName);
 					objJson = new Gson().toJson(vision.detectText(blob));
 				}
 				
@@ -105,7 +105,7 @@ public class VisionController {
 				
 				objJson = entity.getString(keyName);
 				if (objJson.trim().isEmpty()) {
-					System.out.println(keyName + " gerando na api vision");
+					logUsoVision(keyName);
 					objJson = new Gson().toJson(vision.detectFace(blob));
 				}
 				
@@ -116,7 +116,7 @@ public class VisionController {
 				objJson = entity.getString(keyName);
 				
 				if (objJson.trim().isEmpty()) {
-					System.out.println(keyName + " gerando na api vision");
+					logUsoVision(keyName);
 					objJson = new Gson().toJson(vision.detectCropHint(blob));
 				}
 				
@@ -136,6 +136,10 @@ public class VisionController {
 		//salva informação para ser usada como cache posteriormente
 		imageDao.update(Entity.newBuilder(entity).set(keyName, json).build());		
 		return objJson;
+	}
+
+	private void logUsoVision(String keyName) {
+		System.out.println(keyName + " gerando na api vision");
 	}
 
 }
