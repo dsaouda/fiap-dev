@@ -1,4 +1,4 @@
-package com.github.dsaouda.fiapdev;
+package com.github.dsaouda.fiap.devops.app;
 
 import java.time.LocalDateTime;
 
