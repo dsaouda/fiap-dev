@@ -1,7 +1,10 @@
 package com.github.dsaouda.fiap.devops.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.google.cloud.Timestamp;
 
+@XmlRootElement
 public class Image {
 
 	private String name;

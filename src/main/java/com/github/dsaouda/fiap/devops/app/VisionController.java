@@ -127,13 +127,8 @@ public class VisionController {
 				
 		}
 		
-		System.out.println("salvando no banco de dados");
-		//com.google.cloud.datastore.Blob blobJson = com.google.cloud.datastore.Blob.copyFrom(objJson.toString().getBytes());
-		
-		//BlobValue json = BlobValue.newBuilder(blobJson).setExcludeFromIndexes(true).build();
 		StringValue json = StringValue.newBuilder(objJson).setExcludeFromIndexes(true).build();
 		
-		//salva informação para ser usada como cache posteriormente
 		imageDao.update(Entity.newBuilder(entity).set(keyName, json).build());		
 		return objJson;
 	}

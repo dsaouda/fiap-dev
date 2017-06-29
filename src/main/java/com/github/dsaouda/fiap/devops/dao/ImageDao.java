@@ -1,5 +1,8 @@
 package com.github.dsaouda.fiap.devops.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +14,7 @@ import com.google.cloud.datastore.KeyFactory;
 import com.google.cloud.datastore.Query;
 import com.google.cloud.datastore.QueryResults;
 import com.google.cloud.datastore.Transaction;
+import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.cloud.datastore.StructuredQuery.PropertyFilter;
 
 @Component
@@ -41,6 +45,31 @@ public class ImageDao {
 		return datastore.put(entity);
 	}
 	
+	public List<Image> findAll() {
+		Query<Entity> query = Query.newEntityQueryBuilder()
+				.setKind("Image")
+				.setOrderBy(OrderBy.desc("created"))
+				.build();
+		
+		QueryResults<Entity> queryResults = datastore.run(query);
+		
+		List<Image> imageList = new ArrayList<>();
+		while(queryResults.hasNext()) {
+			Entity entity = queryResults.next();
+			
+			Image image = new Image();
+			image.setCreated(entity.getTimestamp("created"));
+			//image.setJsonCropHint(entity.getString("jsonCropHint"));
+			//image.setJsonFace(entity.getString("jsonFace"));
+			//image.setJsonLabel(entity.getString("jsonLabel"));
+			//image.setJsonText(entity.getString("jsonText"));
+			image.setName(entity.getString("name"));
+			image.setUpdated(entity.getTimestamp("updated"));
+			imageList.add(image);
+		}
+		
+		return imageList;
+	}
 	
 	public Entity findByName(String name) {
 		Query<Entity> query = Query.newEntityQueryBuilder()
