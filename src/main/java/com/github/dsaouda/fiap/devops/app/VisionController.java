@@ -1,6 +1,9 @@
 package com.github.dsaouda.fiap.devops.app;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +86,7 @@ public class VisionController {
 				
 				if (objJson.trim().isEmpty()) {
 					logUsoVision(keyName);
-					objJson = new Gson().toJson(vision.detectLabel(blob));
+					objJson = new Gson().toJson(formatLabel(blob));
 				}
 				
 				break;
@@ -131,6 +134,19 @@ public class VisionController {
 		
 		imageDao.update(Entity.newBuilder(entity).set(keyName, json).build());		
 		return objJson;
+	}
+
+	private List<?> formatLabel(Blob blob) {
+		List<Map<String, String>> labels = new ArrayList<>();
+		
+		vision.detectLabel(blob).forEach(l -> {
+			Map<String, String> map = new HashMap<>();
+			map.put("description", l.getDescription());
+			map.put("score", String.valueOf(l.getScore()));
+			labels.add(map);
+		});
+		
+		return labels;
 	}
 
 	private void logUsoVision(String keyName) {

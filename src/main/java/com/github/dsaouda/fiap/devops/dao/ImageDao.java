@@ -60,9 +60,9 @@ public class ImageDao {
 			Image image = new Image();
 			image.setCreated(entity.getTimestamp("created"));
 			//image.setJsonCropHint(entity.getString("jsonCropHint"));
-			//image.setJsonFace(entity.getString("jsonFace"));
-			//image.setJsonLabel(entity.getString("jsonLabel"));
-			//image.setJsonText(entity.getString("jsonText"));
+			image.setJsonFace(entity.getString("jsonFace"));
+			image.setJsonLabel(entity.getString("jsonLabel"));
+			image.setJsonText(entity.getString("jsonText"));
 			image.setName(entity.getString("name"));
 			image.setUpdated(entity.getTimestamp("updated"));
 			imageList.add(image);

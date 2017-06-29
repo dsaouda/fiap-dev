@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -17,7 +16,6 @@ import com.google.cloud.storage.StorageOptions;
 import com.google.cloud.vision.spi.v1.ImageAnnotatorClient;
 
 @SpringBootApplication
-@CrossOrigin
 public class App {
 
 	public static void main(String[] args) {
