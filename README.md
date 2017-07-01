@@ -16,3 +16,10 @@ Projeto para finalização matéria ARQUITETURA E DESENVOLVIMENTO JAVA DE ALTA D
  - Vision (https://cloud.google.com/vision/) - Ferramenta SaaS para extrair informações de uma imagem
  - Spring Initializr (https://start.spring.io/) - Ferramenta para geração de um projeto springboot
  - SpringBoot (https://projects.spring.io/spring-boot/)
+ 
+ # Travis-CI
+ 
+ Plugins utilizados
+ 
+ - https://docs.travis-ci.com/user/sonarcloud/
+ - https://docs.travis-ci.com/user/deployment/google-app-engine/
