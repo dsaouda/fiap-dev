@@ -3,7 +3,7 @@
 
 # fiap-devops-gae
 
-Projeto para finalização matéria ARQUITETURA E DESENVOLVIMENTO JAVA DE ALTA DISPONIBILIDADE PARA CLOUD COMPUTING
+Projeto para finalização matéria *ARQUITETURA E DESENVOLVIMENTO JAVA DE ALTA DISPONIBILIDADE PARA CLOUD COMPUTING*
 
 # Ferramentas utilizadas
 
